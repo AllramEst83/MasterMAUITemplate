@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
+using MasterTemplate.Models;
 using MasterTemplate.ViewModels;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace MasterTemplate
@@ -17,6 +19,28 @@ namespace MasterTemplate
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+
+            var assembly = typeof(MauiProgram).Assembly;
+            string configFileName;
+
+#if DEBUG
+            configFileName = "MasterTemplate.appsettings.Local.json";
+#else
+configFileName = "MasterTemplate.appsettings.json";
+#endif
+
+            using (Stream stream = assembly.GetManifestResourceStream(configFileName))
+            {
+                var config = new ConfigurationBuilder()
+                    .AddJsonStream(stream)
+                    .Build();
+
+                builder.Configuration.AddConfiguration(config);
+            }
+
+            builder.Services.AddOptions<AppSettings>()
+                    .Bind(builder.Configuration.GetSection("ApplicationSettings"));
 
             builder.Services
 
