@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using MasterTemplate.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace MasterTemplate
@@ -17,8 +18,19 @@ namespace MasterTemplate
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services
+
+                //Services
+
+
+                //ViewModels
+                .AddSingleton<MainViewModel>()
+
+
+                //Pages
+                .AddSingleton<MainPage>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
