@@ -30,13 +30,20 @@ namespace MasterTemplate
 configFileName = "MasterTemplate.appsettings.json";
 #endif
 
-            using (Stream stream = assembly.GetManifestResourceStream(configFileName))
+            using (Stream? stream = assembly.GetManifestResourceStream(configFileName))
             {
-                var config = new ConfigurationBuilder()
-                    .AddJsonStream(stream)
-                    .Build();
+                if (stream != null)
+                {
+                    var config = new ConfigurationBuilder()
+                        .AddJsonStream(stream)
+                        .Build();
 
-                builder.Configuration.AddConfiguration(config);
+                    builder.Configuration.AddConfiguration(config);
+                }
+                else
+                {
+                   throw new NullReferenceException("Stream can not be null.");
+                }
             }
 
             builder.Services.AddOptions<AppSettings>()
