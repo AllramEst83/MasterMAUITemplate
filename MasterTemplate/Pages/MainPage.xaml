@@ -1,10 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MasterTemplate.MainPage">
+             x:Class="MasterTemplate.MainPage"
+             xmlns:viewmodel="clr-namespace:MasterTemplate.ViewModels"
+             x:DataType="viewmodel:MainViewModel">
 
-    <Label>
-        Maui base tempalte!
-    </Label>
+    <ContentPage.Resources>
+        <!-- Define styles for labels -->
+        <Style TargetType="Label" x:Key="ColoredLabel">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
 
+        <!-- Define styles for CollectionView -->
+        <Style TargetType="CollectionView" x:Key="ColoredCollectionView">
+            <Setter Property="BackgroundColor" Value="#F0F0F0" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+
+        <!-- Define DataTemplate for CollectionView items -->
+        <DataTemplate x:Key="ColoredItemTemplate">
+            <Grid BackgroundColor="Pink" Padding="10">
+                <Label Text="{Binding}" TextColor="Black" HorizontalTextAlignment="End"/>
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="20">
+        <!-- Bindings for your labels -->
+        <Label Text="{Binding AppSettingsMessage}" Style="{StaticResource ColoredLabel}" HorizontalTextAlignment="Start" BackgroundColor="MediumPurple" TextColor="DarkMagenta"/>
+        <Label Text="{Binding ServiceMessage}" Style="{StaticResource ColoredLabel}" HorizontalTextAlignment="Center" BackgroundColor="LightGreen" TextColor="Black"/>
+
+        <!-- CollectionView with colored background and item template -->
+        <CollectionView ItemsSource="{Binding ServiceMessages}" 
+                        Style="{StaticResource ColoredCollectionView}" 
+                        ItemTemplate="{StaticResource ColoredItemTemplate}" />
+    </VerticalStackLayout>
 </ContentPage>

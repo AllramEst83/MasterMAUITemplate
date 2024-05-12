@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
+using MasterTemplate.Interfaces;
 using MasterTemplate.Models;
+using MasterTemplate.Services;
 using MasterTemplate.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -42,7 +44,7 @@ configFileName = "MasterTemplate.appsettings.json";
                 }
                 else
                 {
-                   throw new NullReferenceException("Stream can not be null.");
+                    throw new NullReferenceException("Stream can not be null.");
                 }
             }
 
@@ -52,7 +54,7 @@ configFileName = "MasterTemplate.appsettings.json";
             builder.Services
 
                 //Services
-
+                .AddSingleton<IMainService, MainService>()
 
                 //ViewModels
                 .AddSingleton<MainViewModel>()
