@@ -34,7 +34,7 @@ namespace MasterTemplate.ViewModels
             AppSettingsMessage = _appSettings.Test;
 
             var serviceMessages = _mainService.GetServiceMessages();
-            foreach ( var message in serviceMessages )
+            foreach (var message in serviceMessages)
             {
                 ServiceMessages.Add(message);
             }
