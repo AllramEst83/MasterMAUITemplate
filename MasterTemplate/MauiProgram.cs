@@ -5,6 +5,7 @@ using MasterTemplate.Services;
 using MasterTemplate.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace MasterTemplate
 {

@@ -25,6 +25,18 @@ namespace MasterTemplate
 
             this.BindingContext = viewModel;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            // Called when the page is about to become visible
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            // Called when the page is no longer visible
+        }
     }
 
 }
