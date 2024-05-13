@@ -61,7 +61,6 @@ configFileName = "MasterTemplate.appsettings.json";
                 //ViewModels
                 .AddSingleton<MainViewModel>()
 
-
                 //Pages
                 .AddSingleton<MainPage>();
 #if DEBUG
